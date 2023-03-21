@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::create('clients', function(Blueprint $table){
-			$table->Integer('NumeroClient');
-			$table->String('nom');
-			$table->String('email');
-			$table->String('carteBancaire');
-            $table->primary('NumeroClient');
-			// d’autres trucs utiles : mediumtext, longtext, bigInteger, Double
+        schema::create('vehicules', function(Blueprint $table){
+            $table->String('matricule')->primary();
+            $table->String('model');
+            $table->Integer('nombredeplace');
+            $table->Double('prix');
+            $table->Boolean('disponible');
+
         });
+
+
     }
 
     /**
@@ -26,7 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('vehicules');
     }
 };
-

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::create('clients', function(Blueprint $table){
-			$table->Integer('NumeroClient');
-			$table->String('nom');
-			$table->String('email');
-			$table->String('carteBancaire');
-            $table->primary('NumeroClient');
-			// d’autres trucs utiles : mediumtext, longtext, bigInteger, Double
+        Schema::create('reservations', function (Blueprint $table) {
+            $table->Integer('codereservation')->primary();
+            $table->Date('dateReservation');
+            $table->Date('dateAller');
+            $table->Date('dateRetour');
         });
     }
 
@@ -26,7 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('reservations');
     }
 };
-

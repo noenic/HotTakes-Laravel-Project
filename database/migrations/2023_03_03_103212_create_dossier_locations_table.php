@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::create('clients', function(Blueprint $table){
-			$table->Integer('NumeroClient');
-			$table->String('nom');
-			$table->String('email');
-			$table->String('carteBancaire');
-            $table->primary('NumeroClient');
-			// d’autres trucs utiles : mediumtext, longtext, bigInteger, Double
+        Schema::create('dossier_locations', function (Blueprint $table) {
+            $table->Integer('idLocation')->primary();
+            $table->String('paye');
         });
     }
 
@@ -26,7 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('dossier_locations');
     }
 };
-
