@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+use App\Http\Controllers\UserAPI;
+
+Route::post('/auth/signup', [UserAPI::class, 'signup']);
+Route::post('auth/login', [UserAPI::class, 'login']);
+Route::delete('auth/logout', [UserAPI::class, 'logout']);
+
+
+
+
+use App\Http\Controllers\SauceControllerAPI;
+
+Route::resource('/sauces', SauceControllerAPI::class);
+Route::post('/sauces/{id}/react', [SauceControllerAPI::class, 'reactToSauce'])->name('sauces.react');

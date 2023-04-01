@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SauceController;
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::resource('/sauces', SauceController::class);
+Route::post('/sauces/{id}/react', [SauceController::class, 'react'])->name('sauces.react');
+
+
+Auth::routes();
+

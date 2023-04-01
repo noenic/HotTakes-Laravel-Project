@@ -1,0 +1,818 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "APIREST  HotSauce",
+        "description": "Une API REST pour le site HotSauce",
+        "contact": {
+            "email": "moi@contact.com"
+        },
+        "version": "1.2.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "API REST"
+        }
+    ],
+    "paths": {
+        "/api/sauces": {
+            "get": {
+                "tags": [
+                    "Sauces"
+                ],
+                "summary": "Obtenir la liste de toutes les sauces",
+                "operationId": "73eec1af005f1874573378989ac37f3f",
+                "responses": {
+                    "200": {
+                        "description": "Retourne un tableau de toutes les sauces"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Sauces"
+                ],
+                "summary": "Ajouter une nouvelle sauce",
+                "operationId": "54a19c80627c921504d80769b1e61140",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "manufacturer",
+                                    "description",
+                                    "mainPepper",
+                                    "heat",
+                                    "image"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nom de la sauce",
+                                        "type": "string",
+                                        "example": "Sauce piquante"
+                                    },
+                                    "manufacturer": {
+                                        "description": "Nom du fabricant de la sauce",
+                                        "type": "string",
+                                        "example": "Piquante"
+                                    },
+                                    "description": {
+                                        "description": "Description de la sauce",
+                                        "type": "string",
+                                        "example": "Une sauce piquante"
+                                    },
+                                    "mainPepper": {
+                                        "description": "Principal ingrédient de la sauce",
+                                        "type": "string",
+                                        "example": "Piment"
+                                    },
+                                    "heat": {
+                                        "description": "Force de la sauce sur une échelle de 1 à 10",
+                                        "type": "integer",
+                                        "example": "10"
+                                    },
+                                    "image": {
+                                        "description": "Image de la sauce",
+                                        "type": "string",
+                                        "example": "https://www.sauce-piquante.fr/162-large_default/sauce-piquante-moruga-trinidad-scorpion.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Retourne la sauce créée"
+                    },
+                    "400": {
+                        "description": "Erreur de validation des données"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/sauces/{id}": {
+            "get": {
+                "tags": [
+                    "Sauces"
+                ],
+                "summary": "Obtenir une sauce spécifique",
+                "operationId": "af063ec752e2e8a07c456f9e1a32971b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la sauce",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retourne la sauce spécifique"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    },
+                    "404": {
+                        "description": "Sauce non trouvée"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Sauces"
+                ],
+                "summary": "Modifier une sauce existante",
+                "description": "Modifie une sauce existante dans la base de données",
+                "operationId": "f2be0d9b933d4d5fb27a2b0809948365",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la sauce à modifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Nom de la sauce",
+                                        "type": "string",
+                                        "example": "Sauce piquante"
+                                    },
+                                    "manufacturer": {
+                                        "description": "Nom du fabricant de la sauce",
+                                        "type": "string",
+                                        "example": "Fabricant de sauces inc."
+                                    },
+                                    "description": {
+                                        "description": "Description de la sauce",
+                                        "type": "string",
+                                        "example": "Une sauce piquante pour relever vos plats"
+                                    },
+                                    "mainPepper": {
+                                        "description": "Principal ingrédient de la sauce",
+                                        "type": "string",
+                                        "example": "Piment"
+                                    },
+                                    "heat": {
+                                        "description": "Force de la sauce sur une échelle de 1 à 10",
+                                        "type": "integer",
+                                        "example": 7
+                                    },
+                                    "image": {
+                                        "description": "URL de l'image de la sauce",
+                                        "type": "string",
+                                        "example": "https://www.sauce-piquante.fr/162-large_default/sauce-piquante-moruga-trinidad-scorpion.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "La sauce modifiée",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Sauce"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requête invalide",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Le nom de la sauce est obligatoire"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Non autorisé",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Sauce non trouvée",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Sauce not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Sauces"
+                ],
+                "summary": "Supprimer une sauce",
+                "description": "Supprimer une sauce existante.",
+                "operationId": "deleteSauce",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la sauce à supprimer.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sauce supprimée avec succès."
+                    },
+                    "401": {
+                        "description": "Non autorisé à supprimer cette sauce."
+                    },
+                    "404": {
+                        "description": "Sauce non trouvée."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Sauces"
+                ],
+                "summary": "Modifier une sauce existante",
+                "description": "Modifie une sauce existante dans la base de données tous les champs ne sont pas obligatoire",
+                "operationId": "d494b8f123344aba431a70d56defb4f0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la sauce à modifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Nom de la sauce",
+                                        "type": "string",
+                                        "example": "Sauce piquante"
+                                    },
+                                    "manufacturer": {
+                                        "description": "Nom du fabricant de la sauce",
+                                        "type": "string",
+                                        "example": "Fabricant de sauces inc."
+                                    },
+                                    "description": {
+                                        "description": "Description de la sauce",
+                                        "type": "string",
+                                        "example": "Une sauce piquante pour relever vos plats"
+                                    },
+                                    "mainPepper": {
+                                        "description": "Principal ingrédient de la sauce",
+                                        "type": "string",
+                                        "example": "Piment"
+                                    },
+                                    "heat": {
+                                        "description": "Force de la sauce sur une échelle de 1 à 10",
+                                        "type": "integer",
+                                        "example": 7
+                                    },
+                                    "image": {
+                                        "description": "URL de l'image de la sauce",
+                                        "type": "string",
+                                        "example": "https://www.sauce-piquante.fr/162-large_default/sauce-piquante-moruga-trinidad-scorpion.jpg"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "La sauce modifiée",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Sauce"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requête invalide",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Le nom de la sauce est obligatoire"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Non autorisé",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Sauce non trouvée",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Sauce not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/sauces/{id}/react": {
+            "post": {
+                "tags": [
+                    "Sauces"
+                ],
+                "summary": "Réagir à une sauce",
+                "description": "Permet de liker ou disliker, ou de retirer son like ou dislike d'une sauce.",
+                "operationId": "4c34300aeee74f9445cd982521eb2a41",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la sauce",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "reaction": {
+                                        "type": "string",
+                                        "enum": [
+                                            "like",
+                                            "dislike",
+                                            "unlike",
+                                            "undislike"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Retourne la sauce mise à jour"
+                    },
+                    "400": {
+                        "description": "Erreur de validation des données"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    },
+                    "404": {
+                        "description": "Sauce non trouvée"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/signup": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Créer un nouvel utilisateur",
+                "operationId": "860854119164f50b97af98d697eedd20",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "johndoe@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "minLength": 8,
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Utilisateur créé",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requête invalide",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Connecter un utilisateur",
+                "operationId": "328915fd16eb9d811ebb2fe296a31a91",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "johndoe@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Token d'authentification",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requête invalide",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Informations d'identification invalides",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/logout": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Déconnexion de l'utilisateur",
+                "description": "Supprime le jeton d'API de l'utilisateur connecté.",
+                "operationId": "4e1f508545ec95205f0e14f81b47f196",
+                "responses": {
+                    "200": {
+                        "description": "Success: Jeton d'API supprimé",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "string",
+                                            "example": "Déconnexion réussie"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized: Token d'API manquant ou invalide",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Non autorisé"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error: Erreur lors de la suppression du token d'API",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Erreur interne du serveur"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Sauce": {
+                "required": [
+                    "name",
+                    "manufacturer",
+                    "description",
+                    "mainPepper",
+                    "heat",
+                    "image"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "ID de la sauce",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Nom de la sauce",
+                        "type": "string"
+                    },
+                    "manufacturer": {
+                        "description": "Nom du fabricant de la sauce",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description de la sauce",
+                        "type": "string"
+                    },
+                    "mainPepper": {
+                        "description": "Principal ingrédient de la sauce",
+                        "type": "string"
+                    },
+                    "heat": {
+                        "description": "Force de la sauce sur une échelle de 1 à 10",
+                        "type": "integer"
+                    },
+                    "imageUrl": {
+                        "description": "URL de l'image de la sauce",
+                        "type": "string"
+                    },
+                    "userId": {
+                        "description": "ID de l'utilisateur qui a créé la sauce",
+                        "type": "integer"
+                    },
+                    "likes": {
+                        "description": "Nombre de likes de la sauce",
+                        "type": "integer"
+                    },
+                    "dislikes": {
+                        "description": "Nombre de dislikes de la sauce",
+                        "type": "integer"
+                    },
+                    "usersLiked": {
+                        "description": "Tableau d'IDs des utilisateurs qui ont liké la sauce",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "usersDisliked": {
+                        "description": "Tableau d'IDs des utilisateurs qui ont disliké la sauce",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "oauth2",
+                "description": "OAuth2 Authentication",
+                "in": "header",
+                "flows": {
+                    "password": {
+                        "tokenUrl": "/api/auth/login",
+                        "scopes": {}
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "User",
+            "description": "Opérations sur les utilisateurs"
+        },
+        {
+            "name": "Sauces",
+            "description": "Opérations sur les sauces"
+        }
+    ]
+}
