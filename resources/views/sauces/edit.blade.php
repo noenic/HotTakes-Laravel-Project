@@ -5,7 +5,7 @@
     <!-- On fait un formulaire de modification e la sauce  -->
     <h1 class="text-center ">Modifier une sauce</h1>
     <div class="text-center  d-flex justify-content-center">
-                    <img id="img-preview" src="{{ asset($sauce->imageUrl) }}" alt="Image de la sauce" class="img-fluid my-3" height="150px" width="150px">
+                    <img id="img-preview" src="{{ asset($sauce->imageUrl) }}" alt="Image de la sauce" class="img-fluid my-3" height="150px" width="150px" style="border-radius: 10px;">
         </div>
         <form action="{{ route('sauces.update', $sauce->id) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')

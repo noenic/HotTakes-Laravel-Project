@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'Documentation TP3',
+                'title' => 'Documentation API HotTakes',
             ],
 
             'routes' => [

@@ -18,8 +18,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SauceController;
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+//On a pas besoin de middleware authentification pour accéder à la page d'accueil
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+
 Route::resource('/sauces', SauceController::class);
 Route::post('/sauces/{id}/react', [SauceController::class, 'react'])->name('sauces.react');
 

@@ -213,21 +213,21 @@ class UserAPI extends Controller
         {
             //On recupere le token dans le header
             $token = request()->bearerToken();
+            try{
 
-            //On supprime le token
-            Auth::user()->tokens()->where('token', $token)->delete();
-
-            return response()->json(['success' => 'success logout'], 200);
+                $user =PersonalAccessToken::findToken($token)->tokenable;
+                //On supprime le token
+                $user->tokens()->delete();
+                return response()->json(['success' => 'success logout'], 200);
+            }
+            catch(\Throwable $th){
+                return response()->json(['error' => 'Unhautorized'], 401);
         }
+    }
 
         
 
-
-
-
-
-    
-}
+    }
 
 
 ?>

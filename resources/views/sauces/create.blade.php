@@ -3,7 +3,7 @@
     <div class="container">
         <h1 class="text-center ">Ajouter une sauce</h1>
         <div class="text-center  d-flex justify-content-center">
-                    <img id="img-preview" src="" alt="Image de la sauce" class="img-fluid my-3" style="display:none" height="150px" width="150px">
+                    <img id="img-preview" src="" alt="Image de la sauce" class="img-fluid my-3" style="display:none" height="150px" width="150px" style="border-radius: 10px;">
         </div>
         <form action="{{ route('sauces.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

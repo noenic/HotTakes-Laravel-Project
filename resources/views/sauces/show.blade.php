@@ -48,9 +48,9 @@ $creatorOfSauce = explode("@", $creatorOfSauce)[0];
     <div class="d-flex justify-content-center mb-3">
         <div class="sauce-container d-flex flex-column align-items-center">
             <div class="sauce-image">
-                <img src="{{ asset($sauce->imageUrl) }}" alt="{{ $sauce->name }}" height="194px" width="194px">
+                <img src="{{ asset($sauce->imageUrl) }}" alt="{{ $sauce->name }}" height="194px" width="194px" style="border-radius: 10px;">
             </div>
-            <div class="sauce-info" style="text-align: center;">
+            <div class="sauce-info d-flex flex-column align-items-center mt-3" style="text-align: center;">
                 <label for="fabricant">fabricant</label>
                 <p name="fabricant">{{ $sauce->manufacturer }}</p>
                 <label for="heat">Heat</label>
@@ -176,6 +176,28 @@ p:last-child {
 }
 
 
+.sauce-info {
+  text-align: center;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.sauce-info label {
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 5px;
+  color: #dc3545;
+}
+
+.sauce-info p {
+  font-size: 18px;
+  margin: 0;
+  color: #333;
+}
 
 </style>
 

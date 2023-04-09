@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('name');
             $table->string('manufacturer');
-            $table->string('description');
+            $table->longText('description');
             $table->string('mainPepper');
             $table->string('imageUrl');
             $table->integer('heat');

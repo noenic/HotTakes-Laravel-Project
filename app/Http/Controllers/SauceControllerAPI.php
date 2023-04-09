@@ -642,11 +642,11 @@ class SauceControllerAPI extends Controller
      * )
      */
     public function reactToSauce(Request $request, $id){
-        $user=$this->getUserFromToken()->id;
         if($this->getUserFromToken() == null){
             //On retourne une erreur 401 si l'utilisateur n'existe pas
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        $user=$this->getUserFromToken()->id;
 
         //On récupère la sauce
         $sauce = Sauce::find($id);

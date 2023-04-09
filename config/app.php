@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'HotTake'),
 
     /*
     |--------------------------------------------------------------------------
@@ -212,4 +212,5 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    
 ];
