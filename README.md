@@ -29,7 +29,10 @@ Un projet Laravel évalué dans le cadre de la ressource R4.01 Architecture Logi
 - Vous pouvez ensuite utiliser les différentes routes de l'API en cliquant sur les boutons "Try it out" et en remplissant les champs
 
 
-#Video de présentation du projet
+# Video de démonstration du projet
 
+
+
+https://user-images.githubusercontent.com/75330764/230770572-bc945bb6-aa99-44ac-84a5-b1c99ccc9b48.mp4
 
 
