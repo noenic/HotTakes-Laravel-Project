@@ -14,7 +14,7 @@ Un projet Laravel évalué dans le cadre de la ressource R4.01 Architecture Logi
 
 <br>
 
-- Vous pouvez vous inscrire sur le site en cliquant sur le bouton "S'inscrire" dans le menu
+- Vous pouvez vous inscrire sur le site en cliquant sur le bouton d'inscription dans le menu
 - Une fois inscrit, vous pouvez vous connecter avec votre adresse mail et votre mot de passe
 - Vous pourrez alors visualiser et créer des sauces ainsi que les noter
 - Vous pouvez également modifier vos sauces et les supprimer
